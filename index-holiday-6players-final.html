@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Thampalakadu Badminton Court</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{--bg:#06100b;--card:#0d1b14;--card2:#12261a;--line:#284334;--green:#a8ff3e;--muted:#91a096;--danger:#ff7d7d;--white:#f5f8f3}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% 0,#173b24 0,#06100b 42%);color:var(--white);font-family:Inter,system-ui,Arial,sans-serif}button,input{font:inherit}button{cursor:pointer}.nav{height:68px;position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:0 5%;background:#06100ddd;border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}.brand{font-weight:950}.brand span{color:var(--green)}.navlinks{display:flex;gap:8px;flex-wrap:wrap}.nav button,.ghost{background:transparent;color:var(--white);border:1px solid var(--line);border-radius:10px;padding:9px 12px}.hero,.main,.dash{max-width:1100px;margin:auto;padding-left:5%;padding-right:5%}.hero{padding-top:55px;padding-bottom:25px;display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center}.eyebrow{color:var(--green);font-size:12px;font-weight:900;letter-spacing:2px}.hero h1{font-size:clamp(43px,7vw,78px);line-height:.92;margin:12px 0}.hero p{color:var(--muted);font-size:17px;max-width:640px}.heroCard,.card,.slot{background:linear-gradient(145deg,#112319,#09140e);border:1px solid var(--line);border-radius:20px}.heroCard{padding:25px}.court{height:210px;border:3px solid var(--green);border-radius:14px;display:flex;align-items:center;justify-content:center;position:relative;background:linear-gradient(90deg,#0b2817 49%,#06100b 50%,#0b2817 51%)}.court:after{content:"";position:absolute;width:100%;height:3px;background:var(--green)}.net{z-index:1;background:#06100b;padding:8px 14px;border-radius:9px;font-weight:900}.main,.dash{padding-top:20px;padding-bottom:70px}.toolbar{display:flex;gap:10px;flex-wrap:wrap}.date,input{background:var(--card);color:var(--white);border:1px solid var(--line);border-radius:11px;padding:12px 13px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.slot{padding:19px}.slothead{display:flex;justify-content:space-between;gap:10px}.time{font-size:21px;font-weight:900}.pill{font-size:11px;font-weight:900;color:var(--green);background:#17351f;padding:6px 9px;border-radius:99px}.players{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:17px 0}.player{background:#09130e;border:1px dashed #395443;border-radius:11px;padding:11px}.player small{display:block;color:var(--muted);margin-top:3px}.free{color:var(--green)}.primary{border:0;border-radius:11px;background:var(--green);color:#06100b;font-weight:950;padding:12px 16px}.primary:disabled{opacity:.5;cursor:not-allowed}.danger{border:1px solid #652d2d;border-radius:10px;background:#351818;color:#ffabab;padding:10px 13px}.auth{max-width:430px;margin:70px auto;padding:0 5%}.form{padding:25px;background:var(--card);border:1px solid var(--line);border-radius:20px}.field{margin:14px 0}.field label{display:block;color:var(--muted);font-size:13px;margin-bottom:6px}.field input{width:100%}.hint,.notice{color:var(--muted);font-size:13px;line-height:1.5}.notice{padding:12px;background:#13271a;border:1px solid #2d4c35;border-radius:11px;margin:13px 0}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stat{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:17px}.stat b{font-size:29px}.stat small{color:var(--muted)}table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line)}th,td{text-align:left;padding:12px;border-bottom:1px solid var(--line);font-size:14px}th{color:var(--muted)}.footer{text-align:center;color:var(--muted);padding:30px}.holidayBox{margin:22px 0;padding:18px;background:var(--card);border:1px solid var(--line);border-radius:16px}.holidayForm{display:grid;grid-template-columns:1fr 1.5fr auto;gap:10px;align-items:end}.holidayList{margin-top:12px;display:grid;gap:8px}.holidayItem{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 12px;background:#09130e;border:1px solid var(--line);border-radius:11px}.sub{color:var(--muted);font-size:12px}.dailyReport{margin:25px 0}.reportHead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.reportTools{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.reportTable{overflow:auto;border-radius:15px;margin-top:12px}.reportTable table{min-width:760px}.reportTable .sub{color:var(--muted);font-size:12px}.reportEmpty{padding:18px;background:var(--card);border:1px solid var(--line);border-radius:15px;color:var(--muted)}.toast{position:fixed;right:18px;bottom:18px;background:#ddffc0;color:#06100b;padding:13px 16px;border-radius:11px;font-weight:900;z-index:20}
+@media print{body{background:#fff!important;color:#111!important}.nav,.footer,.stats,.holidayBox,.reportTools,.noPrint{display:none!important}.dash{max-width:none;padding:0!important}.reportTable table{background:#fff;border:1px solid #bbb}.reportTable th,.reportTable td{color:#111!important;border-color:#ccc}.reportTable .sub{color:#555!important}.eyebrow{color:#111!important}}
+@media(max-width:760px){.hero{grid-template-columns:1fr;padding-top:35px}.heroCard{order:-1}.grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.navlinks button:nth-child(1),.navlinks button:nth-child(2){display:none}.court{height:165px}.holidayForm{grid-template-columns:1fr}.holidayItem{align-items:flex-start}}
+</style>
+</head>
+<body><div id="app"></div>
+<script>
+const SUPABASE_URL="https://pxdelybeugirrnndeuaa.supabase.co";
+const SUPABASE_KEY="sb_publishable_4Za_jBmsXUW4-yLUdSyygQ_gCzl27kP";
+let db=null;
+let supabaseInitError=null;
+
+try{
+  if(!window.supabase || typeof window.supabase.createClient!=="function"){
+    throw new Error("Supabase library did not load. Please check your internet connection and refresh.");
+  }
+  db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+}catch(e){
+  supabaseInitError=e;
+}
+
+function showStartupError(){
+  document.getElementById("app").innerHTML=`
+    <div class="auth">
+      <div class="form">
+        <div class="eyebrow">THAMPALAKADU BADMINTON</div>
+        <h2>Website loaded, but connection failed</h2>
+        <div class="notice">
+          ${esc(supabaseInitError?.message || "Unable to connect to the booking service.")}
+        </div>
+        <button class="primary" style="width:100%" onclick="location.reload()">Try again</button>
+      </div>
+    </div>
+  `;
+}
+let HOLIDAYS=[];
+let HOLIDAY_NAMES={};
+
+function formatTime(minutes){
+  let h=Math.floor(minutes/60),m=minutes%60;
+  const ap=h>=12?"PM":"AM";
+  h=h%12||12;
+  return `${h}:${String(m).padStart(2,"0")} ${ap}`;
+}
+
+async function loadHolidays(){
+  const {data,error}=await db.from("holidays").select("holiday_date,name").order("holiday_date");
+  if(error){console.error("Holiday load error:",error);return false;}
+  HOLIDAYS=(data||[]).map(x=>x.holiday_date);
+  HOLIDAY_NAMES={};
+  (data||[]).forEach(x=>HOLIDAY_NAMES[x.holiday_date]=x.name||"Holiday");
+  return true;
+}
+
+function isHoliday(dateStr){return HOLIDAYS.includes(dateStr)}
+function getSlots(dateStr){
+  if(!dateStr)return [];
+  const d=new Date(dateStr+"T12:00:00");
+  const isSunday=d.getDay()===0;
+  const startMin=(isSunday||isHoliday(dateStr))?18*60:20*60;
+  const endMin=23*60;
+  const slots=[];
+  for(let m=startMin;m<endMin;m+=20){
+    slots.push(`${formatTime(m)} – ${formatTime(m+20)}`);
+  }
+  return slots;
+}
+const today=()=>new Date().toISOString().slice(0,10);
+const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+const phoneKey=p=>p.replace(/\D/g,"");
+window.addEventListener("error",e=>{
+  console.error("Unhandled error:",e.error||e.message);
+});
+window.addEventListener("unhandledrejection",e=>{
+  console.error("Unhandled promise rejection:",e.reason);
+});
+function toast(t){let e=document.createElement("div");e.className="toast";e.textContent=t;document.body.appendChild(e);setTimeout(()=>e.remove(),2400)}
+async function authUser(){return (await db.auth.getUser()).data.user}
+async function profile(){let u=await authUser();if(!u)return null;return (await db.from("profiles").select("*").eq("id",u.id).maybeSingle()).data}
+function nav(p){return `<nav class="nav"><div class="brand">THAMPALAKADU <span>BADMINTON</span></div><div class="navlinks">${p?`<button onclick="home()">Book</button><button onclick="myBookings()">My Bookings</button>${p.role==="admin"?`<button onclick="admin()">Admin</button>`:""}<button onclick="logout()">Logout</button>`:`<button onclick="login()">Login</button><button onclick="signup()">Sign up</button>`}</div></nav>`}
+function layout(c,p){document.getElementById("app").innerHTML=nav(p)+c+`<div class="footer">THAMPALAKADU BADMINTON COURT • SINGLE COURT • DOUBLES ONLY • 4 PLAYERS + 2 SUBSTITUTES</div>`}
+function login(){layout(`<div class="auth"><div class="form"><div class="eyebrow">PLAYER LOGIN</div><h2>Welcome back 🏸</h2><div class="field"><label>Mobile number</label><input id="phone" inputmode="numeric" placeholder="9876543210"></div><div class="field"><label>6-digit PIN</label><input id="pin" inputmode="numeric" type="password" maxlength="6" placeholder="••••••"></div><button class="primary" style="width:100%" onclick="doLogin()">Login</button><p class="hint">Your name is linked to your account. You cannot book using another player's name.</p><p class="hint" style="text-align:center">New player? <a style="color:var(--green);cursor:pointer" onclick="signup()">Create account</a></p></div></div>`,null)}
+function signup(){layout(`<div class="auth"><div class="form"><div class="eyebrow">JOIN THE COURT</div><h2>Create player account</h2><div class="field"><label>Your name</label><input id="name" placeholder="Jefin Tom"></div><div class="field"><label>Mobile number</label><input id="phone" inputmode="numeric" placeholder="9876543210"></div><div class="field"><label>Create 6-digit PIN</label><input id="pin" inputmode="numeric" type="password" maxlength="6" placeholder="••••••"></div><button class="primary" style="width:100%" onclick="doSignup()">Create account</button><p class="notice">No SMS, WhatsApp or paid OTP is used. Your account is linked to your mobile number.</p><p class="hint" style="text-align:center">Already registered? <a style="color:var(--green);cursor:pointer" onclick="login()">Login</a></p></div></div>`,null)}
+function syntheticEmail(phone){return phoneKey(phone)+"@players.thampalakadu.local"}
+async function doSignup(){
+ const name=document.getElementById("name").value.trim(), phone=phoneKey(document.getElementById("phone").value), pin=document.getElementById("pin").value;
+ if(!name||phone.length<10||!/^\d{6}$/.test(pin))return toast("Enter name, valid mobile number and 6-digit PIN.");
+ const exists=await db.from("profiles").select("id").eq("phone",phone).maybeSingle();if(exists.data)return toast("This mobile number is already registered.");
+ const email=syntheticEmail(phone);
+ const {data,error}=await db.auth.signUp({email,password:pin});
+ if(error)return toast(error.message);
+ if(!data.user)return toast("Account could not be created.");
+ const {error:pe}=await db.from("profiles").insert({id:data.user.id,full_name:name,phone,role:"player"});
+ if(pe)return toast("Profile creation failed: "+pe.message);
+ if(data.session){toast("Account created 🏸");home()}else toast("Account created. Now login.");
+}
+async function doLogin(){
+ const phone=phoneKey(document.getElementById("phone").value),pin=document.getElementById("pin").value;
+ if(phone.length<10||!/^\d{6}$/.test(pin))return toast("Enter mobile number and 6-digit PIN.");
+ const {error}=await db.auth.signInWithPassword({email:syntheticEmail(phone),password:pin});
+ if(error)return toast("Mobile number or PIN is incorrect.");
+ home();
+}
+async function home(){
+ const p=await profile();if(!p)return login();
+ layout(`<section class="hero"><div><div class="eyebrow">SINGLE COURT • DOUBLES ONLY</div><h1>Book.<br>Match.<br><span style="color:var(--green)">Play.</span></h1><p>Live booking for Thampalakadu Badminton Court. Your verified account name is used automatically.</p></div><div class="heroCard"><div class="court"><div class="net">🏸 COURT 01</div></div><p style="color:var(--muted)">20-minute slots · 4 players + 2 substitutes · Mon-Sat 8:00 PM–11:00 PM · Sunday & holidays 6:00 PM–11:00 PM</p></div></section><main class="main"><div class="toolbar"><input id="date" class="date" type="date" min="${today()}" value="${today()}" onchange="renderSlots()"></div><h2>Live slots</h2><div id="slots" class="grid"></div></main>`,p);renderSlots();
+}
+async function renderSlots(){
+ const d=document.getElementById("date").value, me=await authUser(),box=document.getElementById("slots");
+ await loadHolidays();
+ const currentSlots=getSlots(d);
+ const holidayLabel=isHoliday(d)?`<div class="notice">🎉 ${esc(HOLIDAY_NAMES[d]||"Holiday")} • 6:00 PM–11:00 PM</div>`:"";
+ const {data,error}=await db.from("bookings").select("id,slot_number,player_id,profiles(full_name)").eq("booking_date",d).order("created_at");
+ if(error){box.innerHTML=`${holidayLabel}<div class="notice">${esc(error.message)}</div>`;return}
+ const by=Array.from({length:currentSlots.length},()=>[]);
+ (data||[]).forEach(x=>by[x.slot_number-1]?.push(x));
+ box.innerHTML=holidayLabel+currentSlots.map((t,i)=>{
+   let b=by[i]||[],mine=b.find(x=>x.player_id===me.id),full=b.length>=6,others=b.filter(x=>x.player_id!==me.id);
+   return `<article class="slot"><div class="slothead"><div class="time">${t}</div><div class="pill">${b.length}/6 PLAYERS</div></div><div class="players">${[0,1,2,3,4,5].map((_,k)=>{let x=b[k],label=k<4?`Player ${k+1}`:`Sub Player ${k-3}`;return `<div class="player">${x?`🏸 <b>${esc(x.profiles?.full_name||"Player")}</b><small>${label}${k>=4?" • Substitute":""}</small>`:`<span class="free">OPEN</span><small>${label}${k>=4?" • Substitute":""}</small>`}</div>`}).join("")}</div><div class="hint" style="margin-bottom:10px">First 4 are playing positions. The next 2 are substitutes.</div>${mine?`<div class="notice">You are booked as ${b.indexOf(mine)<4?`Player ${b.indexOf(mine)+1}`:`Sub Player ${b.indexOf(mine)-3}`}. ${others.length?`Other players: <b>${others.map(x=>esc(x.profiles?.full_name||"Player")).join(" • ")}</b>`:"You are currently the first player."}</div><button class="danger" onclick="cancel(${mine.id})">Cancel my booking</button>`:full?`<button class="ghost" disabled>Slot Full</button>`:`<button class="primary" onclick="book(${i+1},'${d}')">Book my position</button>`}</article>`}).join("");
+}
+
+async function book(slot,date){
+ const me=await authUser();if(!me)return login();
+ const check=await db.from("bookings").select("id,player_id").eq("booking_date",date).eq("slot_number",slot);
+ if(check.error)return toast(check.error.message);
+ if(check.data.some(x=>x.player_id===me.id))return toast("You are already booked in this slot.");
+ if(check.data.length>=6)return toast("This slot is full. 4 players + 2 substitutes are already booked.");
+ const {error}=await db.from("bookings").insert({booking_date:date,slot_number:slot,player_id:me.id});
+ if(error)return toast(error.code==="23505"?"You are already booked.":"Booking failed: "+error.message);
+ toast("Booking confirmed 🏸");renderSlots();
+}
+async function cancel(id){const {error}=await db.from("bookings").delete().eq("id",id);if(error)return toast(error.message);toast("Booking cancelled");renderSlots()}
+async function myBookings(){
+ await loadHolidays();
+ const p=await profile();if(!p)return login(),null;const me=await authUser();
+ const {data,error}=await db.from("bookings").select("id,booking_date,slot_number").eq("player_id",me.id).order("booking_date",{ascending:true});
+ if(error)return toast(error.message);
+ layout(`<main class="dash"><div class="eyebrow">PLAYER AREA</div><h1>My bookings</h1>${data?.length?`<div class="grid">${data.map(x=>`<article class="slot"><div class="pill">${x.booking_date}</div><h2>${getSlots(x.booking_date)[x.slot_number-1]||"Slot "+x.slot_number}</h2><p class="hint">Booked under your account: <b>${esc(p.full_name)}</b></p><button class="danger" onclick="cancelAndRefresh(${x.id})">Cancel</button></article>`).join("")}`:`<div class="slot"><h2>No bookings yet</h2><button class="primary" onclick="home()">Browse slots</button></div>`}</main>`,p);
+}
+async function cancelAndRefresh(id){await cancel(id);myBookings()}
+async function admin(){
+ const p=await profile();if(!p||p.role!=="admin")return home();
+ await loadHolidays();
+ const {data:rows}=await db.from("bookings").select("id,booking_date,slot_number,created_at,profiles(full_name,phone)").order("booking_date",{ascending:false});
+ const {count}=await db.from("profiles").select("*",{count:"exact",head:true});
+ const holidayRows=HOLIDAYS.map(d=>({holiday_date:d,name:HOLIDAY_NAMES[d]||"Holiday"}));
+ layout(`<main class="dash"><div class="eyebrow">COURT MANAGEMENT</div><h1>Admin dashboard</h1><div class="stats"><div class="stat"><small>Players</small><br><b>${count??0}</b></div><div class="stat"><small>Total bookings</small><br><b>${rows?.length||0}</b></div><div class="stat"><small>Today's players</small><br><b>${(rows||[]).filter(x=>x.booking_date===today()).length}</b></div><div class="stat"><small>Slots / day</small><br><b>${getSlots(today()).length}</b></div></div>
+ <div class="holidayBox"><div class="eyebrow">HOLIDAY MANAGEMENT</div><h2>Set holidays</h2><p class="hint">Holiday dates automatically get 6:00 PM–11:00 PM with 20-minute slots.</p><div class="holidayForm"><div class="field" style="margin:0"><label>Date</label><input id="holidayDate" type="date" min="${today()}"></div><div class="field" style="margin:0"><label>Holiday name</label><input id="holidayName" placeholder="Onam / College Holiday"></div><button class="primary" onclick="addHoliday()">Add holiday</button></div><div class="holidayList">${holidayRows.length?holidayRows.map(x=>`<div class="holidayItem"><div><b>${esc(x.name)}</b><div class="sub">${x.holiday_date} • 6:00 PM–11:00 PM</div></div><button class="danger" onclick="removeHoliday('${x.holiday_date}')">Remove</button></div>`).join(""):`<div class="hint">No holidays added yet.</div>`}</div></div>
+ <section class="dailyReport"><div class="reportHead"><div><div class="eyebrow">DAILY BOOKING LIST</div><h2 style="margin-bottom:5px">Daily booking list</h2><p class="hint">See who booked each slot, including substitutes and booking time.</p></div><div class="reportTools"><input id="reportDate" class="date" type="date" min="${today()}" value="${today()}" onchange="renderDailyReport()"><button class="primary" onclick="printDailyReport()">🖨️ Print / PDF</button></div></div><div id="dailyReportContent"></div></section>
+ <h2>All Bookings</h2><table><thead><tr><th>Date</th><th>Slot</th><th>Player</th><th>Booked at</th><th></th></tr></thead><tbody>${rows?.length?rows.map(x=>`<tr><td>${x.booking_date}</td><td>${esc(getSlots(x.booking_date)[x.slot_number-1]||"Slot "+x.slot_number)}</td><td>${esc(x.profiles?.full_name||"Player")}</td><td>${x.created_at?new Date(x.created_at).toLocaleString():"—"}</td><td><button class="danger" onclick="adminRemove(${x.id})">Remove</button></td></tr>`).join(""):`<tr><td colspan="5">No bookings.</td></tr>`}</tbody></table></main>`,p);
+ renderDailyReport();
+}
+
+async function renderDailyReport(){
+ const date=document.getElementById("reportDate")?.value;if(!date)return;
+ await loadHolidays();
+ const box=document.getElementById("dailyReportContent");if(!box)return;
+ const {data,error}=await db.from("bookings").select("id,slot_number,player_id,created_at,profiles(full_name,phone)").eq("booking_date",date).order("slot_number",{ascending:true}).order("created_at",{ascending:true});
+ if(error){box.innerHTML=`<div class="reportEmpty">${esc(error.message)}</div>`;return;}
+ const slots=getSlots(date),by=Array.from({length:slots.length},()=>[]);
+ (data||[]).forEach(x=>by[x.slot_number-1]?.push(x));
+ const total=(data||[]).length,holiday=isHoliday(date),title=holiday?`${HOLIDAY_NAMES[date]||"Holiday"} • 6:00 PM–11:00 PM`:new Date(date+"T12:00:00").toLocaleDateString(undefined,{weekday:"long",year:"numeric",month:"long",day:"numeric"});
+ box.innerHTML=`<div class="notice">📅 <b>${esc(title)}</b> • ${total} booking${total===1?"":"s"}</div><div class="reportTable"><table><thead><tr><th>Time</th><th>Player 1</th><th>Player 2</th><th>Player 3</th><th>Player 4</th><th>Sub Player 1</th><th>Sub Player 2</th></tr></thead><tbody>${slots.map((time,i)=>{const b=by[i]||[];const cells=[0,1,2,3,4,5].map(k=>{const x=b[k];const label=k<4?`Player ${k+1}`:`Sub Player ${k-3}`;return `<td>${x?`<b>${esc(x.profiles?.full_name||"Player")}</b><div class="sub">${label}${x.created_at?` • booked ${new Date(x.created_at).toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"})}`:""}</div>`:`<span class="sub">OPEN</span>`}</td>`}).join("");return `<tr><td><b>${time}</b><div class="sub">${b.length}/6 booked</div></td>${cells}</tr>`}).join("")}</tbody></table></div><p class="hint">First 4 are playing positions; last 2 are substitutes.</p>`;
+}
+function printDailyReport(){
+ const date=document.getElementById("reportDate")?.value;if(!date)return;
+ renderDailyReport().then(()=>setTimeout(()=>window.print(),150));
+}
+
+async function addHoliday(){
+ const p=await profile();if(!p||p.role!=="admin")return home();
+ const date=document.getElementById("holidayDate")?.value,name=document.getElementById("holidayName")?.value.trim()||"Holiday";
+ if(!date)return toast("Select a holiday date.");
+ const {error}=await db.from("holidays").insert({holiday_date:date,name,created_by:(await authUser()).id});
+ if(error)return toast(error.code==="23505"?"That date is already a holiday.":error.message);
+ toast("Holiday added 🎉");admin();
+}
+
+async function removeHoliday(date){
+ const p=await profile();if(!p||p.role!=="admin")return home();
+ const {error}=await db.from("holidays").delete().eq("holiday_date",date);
+ if(error)return toast(error.message);
+ toast("Holiday removed");admin();
+}
+
+async function adminRemove(id){const {error}=await db.from("bookings").delete().eq("id",id);if(error)return toast(error.message);toast("Booking removed");admin()}
+async function logout(){await db.auth.signOut();login()}
+(async()=>{
+  if(supabaseInitError || !db){
+    showStartupError();
+    return;
+  }
+  try{
+    const p=await profile();
+    p?home():login();
+  }catch(e){
+    console.error("Startup error:",e);
+    login();
+    toast("Connection problem. Please try again.");
+  }
+})();
+</script></body></html>
